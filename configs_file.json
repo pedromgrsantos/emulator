@@ -2,30 +2,42 @@
   "SensorNode": {
     "nodeID": "TempNode_001",
    },
-   "components": {
-      "SensorModule": {
-        "sensorID": "TempSensor_001",
-        "sensorType": "Temperature",
-        "EmulationMethod": {
-          "phisical": {
-            "use": "yes",
-            "TypeGPIO": "Digital",
-            "vccPIN": "8",
-            "voltageV": "5",
-          },
-          "virtual": {
-            "use": "no"
-          },
-        },
-        "controlRegister": {
-          "state": "enabled",
-          "interval": {
-            "value": 60,
-            "unit": "seconds",
-            "constraint": "fixed"
-          }
-        }
-      }
-    }
-  }
+   "SensorModule": {
+     "sensorID": "TempSensor_001",
+     "sendorName": "Pool",
+     "sensorType": "Temperature",
+     "EmulationMethod": {
+       "phisical": {
+         "use": "yes",
+         "TypeGPIO": "Digital",
+         "vccPIN": "8",
+         "voltageV": "5",
+       },
+       "virtual": {
+         "use": "no",
+         "valueRange": {
+           "min": 10.0,
+           "max": 50.0,
+           "unit": "Celsius"
+         },
+         "generationFunction": {
+           "type": "random",
+           "parameters": {
+             "initialValue": 22.0,
+             "stepSize": 0.2
+           },
+           "purpose": "Simulates realistic temperature fluctuation."
+         },
+         "samplingInterval": {
+           "value": 60,
+           "unit": "seconds"
+         },
+         "semanticAnnotation": {
+           "ontology": "http://www.w3.org/ns/ssn/",
+           "type": "ssn:Sensor",
+           "observedProperty": "http://qudt.org/vocab/quantitykind/Temperature"
+         }
+       }
+     }
+   }
 }
