@@ -26,8 +26,7 @@
           "resolution": 0.1,
           "unit": "Celsius",
           "semanticAnnotation": {
-            "ontology": "http://www.w3.org/
-            ns/ssn/",
+            "ontology": "http://www.w3.org/ns/ssn/",
             "type": "ssn:Sensor",
             "property": "ssn:observes",
             "observedProperty": "http://qudt.org/vocab/quantitykind/Temperature"
