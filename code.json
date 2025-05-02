@@ -88,8 +88,7 @@
           "constraint": "fixed"
         },
         "logicRule": {
-          "description": "Generate random 
-          temperature data in range [10, 40] with 0.1°C resolution",
+          "description": "Generate random temperature data in range [10, 40] with 0.1°C resolution",
           "action": "store in SensorModule.dataRegister and trigger CommunicationModule.transmission"
         },
         "semanticAnnotation": {
