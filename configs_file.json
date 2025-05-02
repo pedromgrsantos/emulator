@@ -26,16 +26,19 @@
              "initialValue": 22.0,
              "stepSize": 0.2
            },
-           "purpose": "Simulates realistic temperature fluctuation."
+           "purpose": 
+             "Simulates realistic temperature fluctuation."
          },
          "samplingInterval": {
            "value": 60,
            "unit": "seconds"
          },
          "semanticAnnotation": {
-           "ontology": "http://www.w3.org/ns/ssn/",
+           "ontology": 
+             "http://www.w3.org/ns/ssn/",
            "type": "ssn:Sensor",
-           "observedProperty": "http://qudt.org/vocab/quantitykind/Temperature"
+           "observedProperty": 
+             "http://qudt.org/vocab/quantitykind/Temperature"
          }
        }
      }
