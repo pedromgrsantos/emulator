@@ -1,34 +1,21 @@
 {
   "SensorNode": {
     "nodeID": "TempNode_001",
-    "clockFrequency": {
-      "value": 1000000,
-      "unit": "Hz",
-      "constraint": "fixed"
-    },
-    "operatingMode": {
-      "value": "active",
-      "states": ["active", "sleep"],
-      "transitionRule": "switch to 'sleep' after data transmission"
-    },
-    "semanticAnnotation": {
-      "ontology": "http://www.w3.org/ns/ssn/",
-      "type": "ssn:Device",
-      "description": "A virtual IoT sensor node for temperature monitoring"
-    },
-    "components": {
+   },
+   "components": {
       "SensorModule": {
         "sensorID": "TempSensor_001",
         "sensorType": "Temperature",
         "EmulationMethod": {
           "phisical": {
-            "use": "no",
+            "use": "yes",
             "TypeGPIO": "Digital",
             "vccPIN": "8",
-            "voltage": "5"
+            "voltageV": "5"
           },
           "virtual": {
-            "use": "yes",
+            "use": "no"
+            ,
           },
             "semanticAnnotation": {
             "ontology": "http://www.w3.org/ns/ssn/",
@@ -44,8 +31,8 @@
             "unit": "seconds",
             "constraint": "fixed"
           }
-        },
-      },
+        }
+      }
     }
   }
 }
