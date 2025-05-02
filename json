@@ -1,0 +1,130 @@
+{
+  "SensorNode": {
+    "nodeID": "TempNode_001",
+    "clockFrequency": {
+      "value": 1000000,
+      "unit": "Hz",
+      "constraint": "fixed"
+    },
+    "operatingMode": {
+      "value": "active",
+      "states": ["active", "sleep"],
+      "transitionRule": "switch to 'sleep' 
+      after data transmission"
+    },
+    "semanticAnnotation": {
+      "ontology": "http://www.w3.org/ns/ssn/",
+      "type": "ssn:Device",
+      "description": "A virtual IoT sensor 
+      node for temperature monitoring"
+    },
+    "components": {
+      "SensorModule": {
+        "sensorID": "TempSensor_001",
+        "interfaceType": "I2C",
+        "dataRegister": {
+          "type": "float",
+          "range": [10.0, 40.0],
+          "resolution": 0.1,
+          "unit": "Celsius",
+          "semanticAnnotation": {
+            "ontology": "http://www.w3.org/
+            ns/ssn/",
+            "type": "ssn:Sensor",
+            "property": "ssn:observes",
+            "observedProperty": "http://qudt.org
+            /vocab/quantitykind/Temperature"
+          }
+        },
+        "controlRegister": {
+          "state": "enabled",
+          "interval": {
+            "value": 60,
+            "unit": "seconds",
+            "constraint": "fixed"
+          }
+        },
+        "relationship": {
+          "to": "MicrocontrollerUnit",
+          "action": "send generated data to 
+          MCU for processing"
+        }
+      },
+      "CommunicationModule": {
+        "commID": "Comm_001",
+        "protocol": "MQTT",
+        "baudRate": {
+          "value": 9600,
+          "unit": "bps",
+          "constraint": "fixed"
+        },
+        "txBuffer": {
+          "type": "float",
+          "description": "Stores temperature 
+          data before transmission"
+        },
+        "transmissionRule": {
+          "topic": "sensors/temperature",
+          "interval": {
+            "value": 60,
+            "unit": "seconds",
+            "constraint": "fixed"
+          },
+          "semanticAnnotation": {
+            "ontology": "http://www.w3.org/
+            ns/ssn/",
+            "type": "ssn:Output",
+            "description": "Publishes 
+            temperature data to MQTT broker"
+          }
+        },
+        "relationship": {
+          "to": "MicrocontrollerUnit",
+          "action": "receive processed data 
+          from MCU for transmission"
+        }
+      },
+      "MicrocontrollerUnit": {
+        "mcUID": "MCU_001",
+        "cpuFrequency": {
+          "value": 16000000,
+          "unit": "Hz",
+          "constraint": "fixed"
+        },
+        "ramSize": {
+          "value": 512,
+          "unit": "KB",
+          "constraint": "fixed"
+        },
+        "logicRule": {
+          "description": "Generate random 
+          temperature data in range [10, 40] with 0.1°C resolution",
+          "action": "store in SensorModule.dataRegister 
+          and trigger CommunicationModule.transmission"
+        },
+        "semanticAnnotation": {
+          "ontology": "http://www.w3.org/ns/ssn/",
+          "type": "ssn:Platform",
+          "description": "Hosts the virtual sensor logic"
+        }
+      },
+      "PowerManagementUnit": {
+        "pmuID": "PMU_001",
+        "voltageRegulator": {
+          "value": 3.3,
+          "unit": "V",
+          "constraint": "fixed"
+        },
+        "sleepModeConfig": {
+          "state": "enabled",
+          "rule": "enter sleep mode after transmission, wake up every 60 seconds",
+          "semanticAnnotation": {
+            "ontology": "http://www.w3.org/ns/ssn/",
+            "type": "ssn:FeatureOfInterest",
+            "description": "Manages power states for energy efficiency"
+          }
+        }
+      }
+    }
+  }
+}
