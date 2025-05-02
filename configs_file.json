@@ -11,18 +11,11 @@
             "use": "yes",
             "TypeGPIO": "Digital",
             "vccPIN": "8",
-            "voltageV": "5"
+            "voltageV": "5",
           },
           "virtual": {
             "use": "no"
-            ,
           },
-            "semanticAnnotation": {
-            "ontology": "http://www.w3.org/ns/ssn/",
-            "type": "ssn:Sensor",
-            "property": "ssn:observes",
-            "observedProperty": "http://qudt.org/vocab/quantitykind/Temperature"
-          }
         },
         "controlRegister": {
           "state": "enabled",
