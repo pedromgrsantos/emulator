@@ -4,7 +4,7 @@
    },
    "SensorModule": {
      "sensorID": "TempSensor_001",
-     "sendorName": "Pool",
+     "sensorName": "Pool",
      "sensorType": "Temperature",
      "EmulationMethod": {
        "phisical": {
