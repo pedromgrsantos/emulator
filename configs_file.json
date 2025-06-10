@@ -7,7 +7,7 @@
      "sensorName": "DatacenterTemp",
      "sensorType": "Temperature",
      "EmulationMethod": {
-       "phisical": {
+       "physical": {
          "use": "yes",
          "TypeGPIO": "Digital",
          "vccPIN": "8",
